@@ -6,11 +6,11 @@ Created on Thu Jun 08 14:35:25 2017
 """
 from CropConnectTest import Req_Weather_Data
 import time
-import IO
-#import schedule
+#import IO
 
 
-autostart=0
+
+
 
 def getdata ():
     data_request = Req_Weather_Data('grossielectric','Summer17','28993')
@@ -19,24 +19,36 @@ def getdata ():
 def calcruntime (x):
     y = ((x * .54)/1.04)/.044
     return y
-    
-#schedule.every(1).minute.do()
+   
+def local ():
+    x = time.localtime()
+    return x[4]
+
 
 
 while True:
-    #schedule.run_pending()
-    time.sleep(1)
     ETo = getdata()
     runtime = calcruntime(.118)
-    print runtime
-    if IO.I1():
-        print 'Input High'
-        IO.Q1(1)
-    else:
-        print 'Input Low'
-        IO.Q1(0)
+    current = time.localtime()
+    print "Ready"
+    startvar = raw_input()
+    if startvar == 'start':
+        start =1
+        while local() != int(current[4] + runtime):
+            print 'Q on'
+            print 'Current Min:' + str(current[4])
+            print 'Target Min:' + str(int(current[4] + runtime))
+            time.sleep(2)
+            if local() == int(current[4] + runtime):
+                print 'Q off'
+                print 'tsime elapsed'
+                startvar = ''
+                start = 0
+                exit 
     
-    
+            
+        
+
     
     
         
