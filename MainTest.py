@@ -6,6 +6,7 @@ Created on Thu Jun 08 14:35:25 2017
 """
 from CropConnectTest import Req_Weather_Data
 import time
+import IO
 #import schedule
 
 
@@ -28,6 +29,12 @@ while True:
     ETo = getdata()
     runtime = calcruntime(.118)
     print runtime
+    if IO.I1():
+        print 'Input High'
+        IO.Q1(1)
+    else:
+        print 'Input Low'
+        IO.Q1(0)
     
     
     

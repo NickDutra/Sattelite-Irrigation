@@ -27,17 +27,41 @@ GPIO.setup(9, GPIO.IN, pull_up_down = GPIO.PUD_UP)
 GPIO.setup(25, GPIO.IN, pull_up_down = GPIO.PUD_UP)
 GPIO.setup(10, GPIO.IN, pull_up_down = GPIO.PUD_UP)
 
-I1 = 4
-I2 = 17
-I3 = 27
 
+def I1():
+    if not GPIO.input(4):
+        return 1
+    else: 
+        return 0
+    
+def I2():
+    if not GPIO.input(17):
+        return 1
+    else: 
+        return 0
+    
+def I3():
+    if not GPIO.input(22):
+        return 1
+    else: 
+        return 0
+    
+def I4():
+    if not GPIO.input(27):
+        return 1
+    else: 
+        return 0
+    
+def I5():
+    if not GPIO.input(23):
+        return 1
+    else: 
+        return 0
+    
+def Q1(x):
+    if x:
+        mcp.output(8,1)
+    else:
+        mcp.output(8,0)
+    
 
-while (True):
-    if not GPIO.input(I1):
-        print 'Input High'
-    if not GPIO.input(I2):
-        print 'Input 17 High'
-    if not GPIO.input(I3):
-        print 'Input 24 High'
-
-GPIO.cleanup()
